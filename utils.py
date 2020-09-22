@@ -65,6 +65,7 @@ class DataLoader(keras.utils.Sequence):
         self.batch_size = batch_size
         self.Y = Y
         self.X = X
+        self.filenames = [x.split('/')[-1] for x in X] #take the filname, not the full path
         self.shuffle = shuffle
         self.dynamic_loading=dynamic_loading
         if not self.dynamic_loading: #load all data to RAM

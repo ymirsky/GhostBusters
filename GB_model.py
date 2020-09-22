@@ -180,7 +180,7 @@ class GhostBusters:
                 X = [os.path.join(path_e,file) for file in os.listdir(path_e)]
 
                 # Make the data loader (for dynamically loading from disk)
-                generators[expert] = DataLoader(X,[np.nan]*len(X),batch_size=16,shuffle=True,dynamic_loading=False)
+                generators[expert] = DataLoader(X,[np.nan]*len(X),batch_size=16,shuffle=False,dynamic_loading=False)
             
         ### Execute Experts - get their embeddings ###
         s = time.time()
@@ -195,6 +195,6 @@ class GhostBusters:
         f = time.time()
         
         print(len(Y_oe),"samples took",np.round(f-s,3),"seconds.")
-        return pred
+        return pred, [generators['context'].filenames, generators['surface'].filenames, generators['light'].filenames, generators['optical'].filenames]
         
 

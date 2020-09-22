@@ -60,10 +60,12 @@ else:
         GB = GhostBusters(model_path=args.model_dir, device_ID=args.device_id)
         # predict
         data_path = args.predict
-        pred = GB.predict(path=data_path)
+        pred, filenames = GB.predict(path=data_path)
         import numpy as np
         print("%",100*np.sum(pred[:,1]>0.5)/len(pred),"of the samples were predicted as 'fake'.")
         if (args.pred_path == "predictions/pred.csv") and (not os.path.exists('predictions/')):
             os.makedirs('predictions/')
-        np.savetxt(args.pred_path,pred,delimiter=',')
-
+        import pandas as pd
+        d_pred=pd.DataFrame(pred,columns=['real','fake'])
+        d_pred['filenames']=filenames[0] # just use the context expert's filenames to save space
+        d_pred.to_csv(args.pred_path,index=False)
