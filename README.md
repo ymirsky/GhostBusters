@@ -6,7 +6,7 @@ In this repository you will find a Python Keras implementation of GhostBusters, 
 GhostBusters is a proposed contermeasure against Phantom attacks on driverless vehicles and advanced driver assist systems (ADAS). A Phantom attack is where an object is projected or digitally displayed for a split-second near a vehicle causing the vehicle to behave unpredicably. For example, the projection of a person on the road can trigger the collision avaoidance system, causing the car to stop or swerve in a dageous manner. Another example is where a false road sign is projected on a wall nearby which alters the car's speed limit.
 
 *The Attack Model:*
-![](https://raw.githubusercontent.com/ymirsky/GhostBusters/master/readme/attack_model.png)
+![](https://github.com/ymirsky/GhostBusters/raw/master/attack_model.png)
 
 
 This attack raises great concern, because unskilled attackers can use split-second phantom attacks against ADASs with little fear of getting caught, because  
@@ -33,7 +33,7 @@ Our committee, called the GhostBusters, consists of four deep CNN models, each f
 To make a prediction on whether or not a sign is real or fake, we combine the knowledge of the four models into a final prediction: As an image is passed through each of the models, we capture the activation of the fifth layer's neurons. This vector provides a latent representation (embedding) of the model's reasoning on why it thinks the given instance should be predicted as a certain class. We then concatenate the embeddings to form a summary of the given image. Finally, a fifth neural network is trained to classify the cropped sign as real or fake using the concatenated embeddings as its input. 
 
 *The Architecture: Meet the GhostBusters*
-![](https://raw.githubusercontent.com/ymirsky/GhostBusters/master/readme/architecture.png)
+![](https://github.com/ymirsky/GhostBusters/raw/master/architecture.png)
 
 
 
