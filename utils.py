@@ -27,11 +27,13 @@ from tensorflow.keras.callbacks import Callback
 # Return: the FILEPATHS to the npy images for the train and test set. We load the images later during training to reduce memory consumption.
 def split_data(base_path_r,base_path_f,split=0.8):
     X_r = []
-    X_r += [os.path.join(base_path_r,file) for file in os.listdir(base_path_r)]
+    files = os.listdir(base_path_r); files.sort()
+    X_r += [os.path.join(base_path_r,file) for file in files]
     Y_r = np.zeros((len(X_r),2))
     Y_r[:,0] = 1 # 0:real, 1:fake
     X_f = []
-    X_f += [os.path.join(base_path_f,file) for file in os.listdir(base_path_f)]
+    files = os.listdir(base_path_f); files.sort()
+    X_f += [os.path.join(base_path_f,file) for file in files]
     Y_f = np.zeros((len(X_f),2))
     Y_f[:,1] = 1 # 0:real, 1:fake
 

@@ -58,7 +58,7 @@ class GhostBusters:
             print('Loaded all models successfully.')
                         
 
-    def train(self,real_dir_path,fake_dir_path,nosign_dir_path, epochs=[2,2]):
+    def train(self,real_dir_path,fake_dir_path,nosign_dir_path, epochs=[25,10]):
         # {real, fake}_dir_paths are directories containing images detected by the roadsign detector in npy format, organized by expert. 
         # for training the context model, fake_paths should be to exampels or where there are no sign (training) and context_val_path should be the path to the phantom examples (validation)
         # Return: trained models and the train/validation data generators
@@ -133,7 +133,6 @@ class GhostBusters:
         Xtrain_se,Ytrain_se = get_embeddings(self.embeddings['surface'],self.train_gens['surface'])
         Xtrain_le,Ytrain_le = get_embeddings(self.embeddings['light'],self.train_gens['light'])
         Xtrain_oe,Ytrain_oe = get_embeddings(self.embeddings['optical'],self.train_gens['optical'])
-        print(Xtrain_ce.shape,Xtrain_se.shape,Xtrain_le.shape,Xtrain_oe.shape)
         Xtrain_csloe = np.hstack((Xtrain_ce,Xtrain_se,Xtrain_le,Xtrain_oe))
         assert(np.array_equal(Ytrain_ce,Ytrain_oe))
         Ytrain_csloe = Ytrain_ce
@@ -173,11 +172,12 @@ class GhostBusters:
         ### Prep Data Loaders (generators) ###
         generators = {"context":None, "surface":None, "light":None, "optical":None}
         if path is None:
-            generators = self.validation_gen
+            generators = self.validation_gens
         else:
             for expert in self.expert_names:
                 path_e = os.path.join(path,expert)
-                X = [os.path.join(path_e,file) for file in os.listdir(path_e)]
+                files = os.listdir(path_e); files.sort()
+                X = [os.path.join(path_e,file) for file in files]
 
                 # Make the data loader (for dynamically loading from disk)
                 generators[expert] = DataLoader(X,[np.nan]*len(X),batch_size=16,shuffle=False,dynamic_loading=False)

@@ -75,7 +75,7 @@ Implementation nodes:
 * Tested using Anaconda 3.8.5, Keras with the tensorflow back-end v2.3, and v2.2 GPU (see [environment.yaml](environment.yaml))
 
 ### Installation for Model Training and Execution ONLY
-1. Download the pre-trained models [from here](https://drive.google.com/file/d/1nhqo9cYH3QZSzn3kCIv9JmL6tdeW3Or5/view?usp=sharing) and put them into the 'models' directory.
+1. Download the pre-trained models [from here](https://drive.google.com/file/d/1hAMOT0Nxe9MMhkY8w4_bY0Xz9WplcyNP/view?usp=sharing) and put them into the 'models' directory.
 2. If you want to train/execute the model on our datasets, then download them [from here](https://drive.google.com/file/d/1bi0sklYmd83i6qcBQ45VNSdKqYio4r1k/view?usp=sharing) and put them into the 'data' directory.
 3. Install the dependencies:
 ```
