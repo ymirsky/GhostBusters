@@ -206,8 +206,6 @@ See the [LICENSE](LICENSE) file for details
 
 # Citations
 If you use the source code in any way, please cite:
-
-*Yisroel Mirsky, Tom Mahler, Ilan Shelef, and Yuval Elovici. 28th USENIX Security Symposium (USENIX Security 19)*
 ```
 @inproceedings {ghostbusters@2020,
 author = {Ben Nassi and Yisroel Mirsky and Dudi Nassi and Raz Ben-Netanel and Oleg Drokin and Yuval Elovici},
